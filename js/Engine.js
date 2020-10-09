@@ -18,6 +18,25 @@ class Engine {
     addBackground(this.root);
   }
 
+  // Create a Restart Button
+  showRestart = () => {
+    let mainDiv = document.getElementById("app");
+    const restartButton = document.createElement("button");
+    restartButton.innerText = "RESTART";
+    restartButton.style.display = "block";
+    restartButton.style.zIndex = "10000";
+    restartButton.style.position = "absolute";
+    restartButton.style.top = "300px";
+    restartButton.style.left = "115px";
+    restartButton.style.padding = "20px";
+    restartButton.style.width = "150px";
+    mainDiv.appendChild(restartButton);
+    restartButton.onclick = function () {
+      Engine.gameLoop();
+      restartButton.style.display = "none";
+    };
+  };
+
   // The gameLoop will run every few milliseconds. It does several things
   //  - Updates the enemy positions
   //  - Detects a collision between the player and any enemy
@@ -57,7 +76,7 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert('Game over');
+      window.alert("Game over");
       return;
     }
 
@@ -68,6 +87,26 @@ class Engine {
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerDead = () => {
-    return false;
+    let dead = false;
+    this.enemies.forEach((enemy) => {
+      let enemyLeft = enemy.x;
+      let enemyRight = enemy.x + ENEMY_WIDTH;
+      let enemyTop = enemy.y;
+      let enemyBottom = enemy.y + ENEMY_HEIGHT;
+      let playerLeft = this.player.x;
+      let playerRight = this.player.x + PLAYER_WIDTH;
+      let playerTop = GAME_HEIGHT - PLAYER_HEIGHT - 10;
+      let playerBottom = GAME_HEIGHT - 10;
+      if (
+        enemyBottom > playerTop &&
+        enemyTop < playerBottom &&
+        enemyRight > playerLeft &&
+        enemyLeft < playerRight
+      ) {
+        dead = true;
+        this.showRestart();
+      }
+    });
+    return dead;
   };
 }
