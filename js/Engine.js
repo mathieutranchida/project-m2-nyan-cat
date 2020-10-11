@@ -15,14 +15,19 @@ class Engine {
     // that contains instances of the Enemy class
     this.enemies = [];
     this.startTime = new Date().getTime();
+
+    this.score = new Score(this.root);
+    this.levelDisplay = new Level(this.root);
+    this.levelValue = 1;
+
+    this.text = new Text(this.root, 0, 0, this.score.points);
     // We add the background image to the game
     addBackground(this.root);
   }
 
   timeSpeedIncrease = (timeDiff) => {
-    console.log(timeDiff);
     const increase = Math.ceil(timeDiff / 10000);
-    console.log(increase);
+    this.levelValue = increase;
     return increase;
   };
 
@@ -32,7 +37,9 @@ class Engine {
   //  - Removes enemies that are too low from the enemies array
   gameLoop = () => {
     let gameTime = new Date().getTime() - this.startTime;
-    console.log(gameTime, this.startTime);
+    this.score.increment(gameTime);
+    this.text.update(this.score.points);
+    this.levelDisplay.update(this.levelValue);
     // This code is to see how much time, in milliseconds, has elapsed since the last
     // time this method was called.
     // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
