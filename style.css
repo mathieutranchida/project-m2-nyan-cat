@@ -2,6 +2,43 @@ body {
   background-color: black;
 }
 
-.content {
-  background-color: black;
+.info {
+  position: fixed;
+  top: 8px;
+  left: 608px;
+  height: 692px;
+  width: 400px;
+  background-color: 1c0c0d;
+}
+
+.logo-image {
+  width: 200px;
+  margin: 10px 100px;
+}
+
+.intro-text {
+  text-align: center;
+  padding: 0px 20px;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+.explication-text {
+  padding-top: 15px;
+}
+
+.rules-title {
+  padding-top: 25px;
+  font-weight: bold;
+  font-size: 17pt;
+}
+
+.rules {
+  padding: 0px 25px;
+}
+
+.controls-title {
+  padding-top: 25px;
+  font-weight: bold;
+  font-size: 17pt;
 }

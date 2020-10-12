@@ -95,9 +95,14 @@ class Engine {
     restartButton.style.zIndex = "10000";
     restartButton.style.position = "absolute";
     restartButton.style.top = "300px";
-    restartButton.style.left = "115px";
+    restartButton.style.left = "233px";
     restartButton.style.padding = "20px";
     restartButton.style.width = "150px";
+    restartButton.style.background = "#1c0c0d";
+    restartButton.style.border = "5px solid white";
+    restartButton.style.borderRadius = "15px";
+    restartButton.style.color = "white";
+    restartButton.focus();
     mainDiv.appendChild(restartButton);
     restartButton.onclick = function () {
       onclickReset(restartButton);
