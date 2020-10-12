@@ -102,7 +102,7 @@ class Engine {
     restartButton.style.border = "5px solid white";
     restartButton.style.borderRadius = "15px";
     restartButton.style.color = "white";
-    restartButton.focus();
+    restartButton.autofocus();
     mainDiv.appendChild(restartButton);
     restartButton.onclick = function () {
       onclickReset(restartButton);
@@ -110,9 +110,7 @@ class Engine {
   };
 
   onclickReset = (givenRestartButton) => {
-    console.log("before: ", this.startTime);
     this.startTime = new Date().getTime();
-    console.log("after: ", this.startTime);
     this.gameLoop();
     givenRestartButton.style.display = "none";
   };
@@ -137,6 +135,8 @@ class Engine {
         enemyLeft < playerRight
       ) {
         dead = true;
+        let crash = document.getElementById("crash");
+        crash.play();
         this.showRestart();
       }
     });
