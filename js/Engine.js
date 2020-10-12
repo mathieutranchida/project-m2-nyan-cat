@@ -102,7 +102,6 @@ class Engine {
     restartButton.style.border = "5px solid white";
     restartButton.style.borderRadius = "15px";
     restartButton.style.color = "white";
-    restartButton.autofocus();
     mainDiv.appendChild(restartButton);
     restartButton.onclick = function () {
       onclickReset(restartButton);
